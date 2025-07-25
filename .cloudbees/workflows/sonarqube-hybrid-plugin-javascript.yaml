@@ -1,0 +1,29 @@
+name: sonarqube-hybrid-plugin-javascript
+kind: workflow
+apiVersion: automation.cloudbees.io/v1alpha1
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - 'master'
+
+permissions:
+  scm-token-own: read
+  scm-token-org: read
+  id-token: write
+
+jobs:
+  sonar-hybrid-scan:
+    steps:        
+      - name: checkout Source Code
+        uses: cloudbees-io/checkout@v1
+
+      - name: Setup sonarqube explicit scanner with community edition
+        uses: cloudbees-io/sonarqube-plugin@v1
+        with:
+          url: 'https://sonarqube.saas-preprod.beescloud.com'
+          username: ${{ secrets.SONARQUBE_USERNAME }}
+          password: ${{ secrets.SONARQUBE_PASSWORD }}
+          ref: main
+          
