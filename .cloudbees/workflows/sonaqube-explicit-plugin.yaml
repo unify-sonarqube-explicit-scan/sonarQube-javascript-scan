@@ -4,6 +4,9 @@ apiVersion: automation.cloudbees.io/v1alpha1
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - 'main'
   schedule:
     - cron: 30 3 * * 1-5
 
