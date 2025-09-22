@@ -1,7 +1,7 @@
 name: sonarqube-hybrid-plugin-javascript
 kind: workflow
 apiVersion: automation.cloudbees.io/v1alpha1
-
+ 
 on:
   workflow_dispatch:
   push:
